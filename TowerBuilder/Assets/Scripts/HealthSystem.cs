@@ -1,0 +1,62 @@
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class HealthSystem : MonoBehaviour
+{
+
+    public event EventHandler OnDamageTaken;
+    public event EventHandler OnDestroyed;
+
+    [SerializeField] private int maxHP;
+    private int currentHP;
+
+    private void Awake()
+    {
+        currentHP = maxHP;
+    }
+
+    public void TakeDamage(int damageAmount)
+    {
+        currentHP -= damageAmount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+
+        OnDamageTaken?.Invoke(this, EventArgs.Empty);
+
+        if (IsDestroyed())
+        {
+            OnDestroyed?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public void SetHPMax(int maxHP, bool updateHPAmount)
+    {
+        this.maxHP = maxHP;
+
+        if (updateHPAmount)
+        {
+            currentHP = maxHP;
+        }
+    }
+
+    public float GetHPNormalized()
+    {
+        return (float)currentHP / maxHP;
+    }
+
+    public int GetCurrentHP()
+    {
+        return currentHP;
+    }
+
+    public bool IsFullHP()
+    {
+        return currentHP == maxHP;
+    }
+
+    public bool IsDestroyed()
+    {
+        return currentHP == 0;
+    }
+}

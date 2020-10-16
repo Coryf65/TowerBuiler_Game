@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e9b69ab549c5564986f938c28d85e87, type: 3}
+  m_Name: StoneHarvester
+  m_EditorClassIdentifier: 
+  prefabTransform: {fileID: 7911702560433303933, guid: 8b3c3e769e7f5314ca87ea1f3c34a344,
+    type: 3}
+  resourceGenData:
+    timerMax: 1
+    resourceType: {fileID: 11400000, guid: 07754852700915a4d8d81e32f5a8d00b, type: 2}
+    maxDetectionRadius: 5
+    maxResourceAmount: 4
+  nameString: Stone Harvester
+  sprite: {fileID: 21300000, guid: 2263e91ebcd2a254dab5f4caccb4a7af, type: 3}
+  minConstructuonRadius: 5
+  maxHP: 100
+  hasResourceGenData: 1
+  ConstructionResourceCost:
+  - resourceType: {fileID: 11400000, guid: defe256b23bde0f4aa9d5a6c857e79b3, type: 2}
+    amount: 30
