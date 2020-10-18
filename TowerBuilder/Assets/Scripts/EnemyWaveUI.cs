@@ -18,6 +18,7 @@ public class EnemyWaveUI : MonoBehaviour
     private void Start()
     {
         enemyWaveManager.OnWaveNumberChanged += EnemyWaveManager_OnWaveNumberChanged;
+        SetWaveNumberText("Wave " + enemyWaveManager.GetWaveNumer());
     }
 
     private void EnemyWaveManager_OnWaveNumberChanged(object sender, System.EventArgs e)
@@ -33,7 +34,7 @@ public class EnemyWaveUI : MonoBehaviour
             SetMessageText("");
         } else
         {
-            SetMessageText("Next Wave in " + nextWaveSpawnTimer + "s");
+            SetMessageText("Next Wave in " + nextWaveSpawnTimer.ToString("F1") + "s");
         }
     }
 
