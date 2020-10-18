@@ -1,17 +1,29 @@
-﻿using System.Collections;
+﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyWaveManager : MonoBehaviour
 {
+
+    // creating an event to handler the wave changes and update the ui
+    public event EventHandler OnWaveNumberChanged;
+
     // creating a State like design
     private enum State
     {
         WaitingToSpawnNextWave,
         SpawningWave,
     }
-    [SerializeField] private Transform spawnPositionTransform;
+
+    [Header("Spawn Points")]
+    [Tooltip("Place a EnemySpawnPosition GameObject on map for more spawn points")]
+    [SerializeField] private List<Transform> spawnPositionTransforms;
+    [Tooltip("Connected to the nextWaveSpawnPoint GameObject, displays next spawn area")]
+    [SerializeField] private Transform nextSpawnPositionTransform;
+    [Header("Spawner Settings")][Space]    
     [SerializeField] private State currentState;
+    [SerializeField] private int waveNumber;
+
     private float nextWaveSpawnTimer;
     private float enemySpawnTimer;
     private int enemiesToSpawnCount;
@@ -22,7 +34,8 @@ public class EnemyWaveManager : MonoBehaviour
     {
         // setting State
         currentState = State.WaitingToSpawnNextWave;
-
+        spawnPosition = spawnPositionTransforms[UnityEngine.Random.Range(0, spawnPositionTransforms.Count)].position; // randomy choose a spawn point from our list
+        nextSpawnPositionTransform.position = spawnPosition;
         nextWaveSpawnTimer = 3f;
     }
 
@@ -32,7 +45,7 @@ public class EnemyWaveManager : MonoBehaviour
         {
             case State.WaitingToSpawnNextWave:
                 nextWaveSpawnTimer -= Time.deltaTime;
-                if (nextWaveSpawnTimer < 0)
+                if (nextWaveSpawnTimer < 0f)
                 {
                     SpawnWave();
                 }
@@ -42,12 +55,12 @@ public class EnemyWaveManager : MonoBehaviour
                 if (enemiesToSpawnCount > 0)
                 {
                     enemySpawnTimer -= Time.deltaTime;
-                    if (enemySpawnTimer < 0)
+                    if (enemySpawnTimer < 0f)
                     {
                         // Reset the timer
-                        enemySpawnTimer = Random.Range(0, .2f);
+                        enemySpawnTimer = UnityEngine.Random.Range(0f, .2f);
                         // Spawn an enemy
-                        Enemy.Create(spawnPosition + UtilsClass.GetRandomDirection() * Random.Range(0f, 10f));
+                        Enemy.Create(spawnPosition + UtilsClass.GetRandomDirection() * UnityEngine.Random.Range(0f, 10f));
                     }
                     // we spawned one change counter
                     enemiesToSpawnCount--;
@@ -55,6 +68,8 @@ public class EnemyWaveManager : MonoBehaviour
                     if (enemiesToSpawnCount <= 0)
                     {
                         currentState = State.WaitingToSpawnNextWave;
+                        spawnPosition = spawnPositionTransforms[UnityEngine.Random.Range(0, spawnPositionTransforms.Count)].position; // randomy choose a spawn point from our list
+                        nextSpawnPositionTransform.position = spawnPosition;
                     }
                 }
                 break;
@@ -62,11 +77,30 @@ public class EnemyWaveManager : MonoBehaviour
     }
 
     private void SpawnWave()
-    {
-        spawnPosition = spawnPositionTransform.position;
+    {        
         nextWaveSpawnTimer = 10f; // 10 seconds
-        enemiesToSpawnCount = 10; // 10 enemies total
+        enemiesToSpawnCount = 5 + 3 * waveNumber; // building a dynamic spawn counter
         currentState = State.SpawningWave;
+        waveNumber++;
+        OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    /// <summary>
+    ///  Gets the Wave number to use in our UI
+    /// </summary>
+    /// <returns>The Current Wave Number</returns>
+    public int GetWaveNumer()
+    {
+        return waveNumber;
+    }
+
+    /// <summary>
+    ///  Gets the Current Spawner Timer
+    /// </summary>
+    /// <returns>The next Wave Spawn Timer</returns>
+    public float GetWaveSpawnTimer()
+    {
+        return nextWaveSpawnTimer;
     }
 
 }
