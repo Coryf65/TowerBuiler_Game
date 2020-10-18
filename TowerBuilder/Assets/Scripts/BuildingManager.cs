@@ -67,23 +67,6 @@ public class BuildingManager : MonoBehaviour
             
         }
 
-        // Testing Functions
-        //if (Input.GetKeyDown(KeyCode.T))
-        //{
-        //    buildingType = buildingList.list[0];
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.Y))
-        //{
-        //    buildingType = buildingList.list[1];
-        //}
-
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Vector3 enemySpawnPosition = MouseHelper.GetMouseWorldPosition() + UtilsClass.GetRandomDirection() * 5f;
-            Enemy.Create(enemySpawnPosition);
-        }
-
     }    
 
     public void SetActiveBuildingType(BuildingTypeSO buildingType)
