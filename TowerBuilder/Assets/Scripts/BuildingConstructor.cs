@@ -25,18 +25,23 @@ public class BuildingConstructor : MonoBehaviour
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
     private BuildingTypeHolder buildingTypeHolder;
+    private Material constructionMaterial;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = transform.Find("sprite").GetComponent<SpriteRenderer>();
         buildingTypeHolder = GetComponent<BuildingTypeHolder>();
+        constructionMaterial = spriteRenderer.material;
     }
 
     // Update is called once per frame
     void Update()
     {
         constructionTimer -= Time.deltaTime;
+
+        constructionMaterial.SetFloat("_Progress", GetConstrucitonTimerNormalized());
+
         if (constructionTimer <= 0f)
         {
             Instantiate(buildingType.prefabTransform, transform.position, Quaternion.identity);
