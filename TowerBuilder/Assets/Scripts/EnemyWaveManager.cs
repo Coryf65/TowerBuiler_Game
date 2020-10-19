@@ -89,7 +89,7 @@ public class EnemyWaveManager : MonoBehaviour
     ///  Gets the Wave number to use in our UI
     /// </summary>
     /// <returns>The Current Wave Number</returns>
-    public int GetWaveNumer()
+    public int GetWaveNumber()
     {
         return waveNumber;
     }
@@ -101,6 +101,11 @@ public class EnemyWaveManager : MonoBehaviour
     public float GetWaveSpawnTimer()
     {
         return nextWaveSpawnTimer;
+    }
+
+    public Vector3 GetSpawnPosition()
+    {
+        return spawnPosition;
     }
 
 }
