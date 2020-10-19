@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Enemy
+  m_Name: SpriteEmission
   m_Shader: {fileID: -6465566751694194690, guid: a829ad862ef5e6140917e1bfbc7ac75d,
     type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
@@ -40,6 +40,6 @@ Material:
     - _EnableExternalAlpha: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _EmissionColor: {r: 3.9999995, g: 0, b: 0.25130886, a: 0}
+    - _EmissionColor: {r: 1, g: 1, b: 1, a: 0}
     - _Flip: {r: 1, g: 1, b: 1, a: 1}
     - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
