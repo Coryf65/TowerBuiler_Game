@@ -24,11 +24,13 @@ public class BuildingConstructor : MonoBehaviour
     private float constructionTimerMax;
     private BoxCollider2D boxCollider;
     private SpriteRenderer spriteRenderer;
+    private BuildingTypeHolder buildingTypeHolder;
 
     private void Awake()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         spriteRenderer = transform.Find("sprite").GetComponent<SpriteRenderer>();
+        buildingTypeHolder = GetComponent<BuildingTypeHolder>();
     }
 
     // Update is called once per frame
@@ -56,6 +58,9 @@ public class BuildingConstructor : MonoBehaviour
         // dynamically natch the building being placed
         boxCollider.offset = buildingType.prefabTransform.GetComponent<BoxCollider2D>().offset;
         boxCollider.size = buildingType.prefabTransform.GetComponent<BoxCollider2D>().size;
+
+        // prevent spam placement
+        buildingTypeHolder.buildingType = buildingType;
     }
 
     public float GetConstrucitonTimerNormalized()

@@ -108,8 +108,8 @@ public class BuildingManager : MonoBehaviour
                 // has a building type holder
                 if (buildingTypeHolder.buildingType == buildingType)
                 {
-                    errorReason = "Too close to a building of the same type!";
                     // Building of the same type already placed in our construction radius
+                    errorReason = "Too close to a building of the same type!";
                     return false;   
                 }
             }
