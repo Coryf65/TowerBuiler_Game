@@ -25,3 +25,4 @@ MonoBehaviour:
   maxHP: 150
   hasResourceGenData: 1
   ConstructionResourceCost: []
+  constructionTimerMax: 5

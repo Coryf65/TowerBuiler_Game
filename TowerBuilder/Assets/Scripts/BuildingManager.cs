@@ -54,7 +54,8 @@ public class BuildingManager : MonoBehaviour
                     {
                         ResourceManager.TheResourceManager.SpendResources(activeBuildingType.ConstructionResourceCost);
                         // create an instance on mouse position with no rotation
-                        Instantiate(activeBuildingType.prefabTransform, MouseHelper.GetMouseWorldPosition(), Quaternion.identity);
+                        //Instantiate(activeBuildingType.prefabTransform, MouseHelper.GetMouseWorldPosition(), Quaternion.identity);
+                        BuildingConstructor.Create(MouseHelper.GetMouseWorldPosition(), activeBuildingType);
                     } else
                     {
                         ToolTipUI.Instance.Show("Cannot Afford: " + activeBuildingType.GetConstructionCost(), new ToolTipUI.ToolTipTimer { timer = 2f });

@@ -21,16 +21,21 @@ public class BuildingTypeSO : ScriptableObject
     
     [Header("Construction Costs")]
     public ResourceAmount[] ConstructionResourceCost;
+    [Tooltip("How Long it will take to construct this building")]
+    public float constructionTimerMax;
 
     public string GetConstructionCost()
     {
         string cost = "";
 
-        foreach (ResourceAmount resourceAmount in ConstructionResourceCost)
+        if (ConstructionResourceCost != null)
         {
-            cost += "<color=#" + resourceAmount.resourceType.colorHex + ">" +  resourceAmount.resourceType.nameShort + ": " + resourceAmount.amount + "</color> ";
+            foreach (ResourceAmount resourceAmount in ConstructionResourceCost)
+            {
+                cost += "<color=#" + resourceAmount.resourceType.colorHex + ">" + resourceAmount.resourceType.nameShort + ": " + resourceAmount.amount + "</color> ";
+            }
         }
-
+      
         return cost;
     }
 
