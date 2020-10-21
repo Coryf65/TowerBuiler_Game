@@ -38,7 +38,14 @@ public class BuildingManager : MonoBehaviour
 
     private void Start()
     {
-        mainCamera = Camera.main;        
+        mainCamera = Camera.main;
+
+        hqBuilding.GetComponent<HealthSystem>().OnDestroyed += HQ_OnDestroyed;
+    }
+
+    private void HQ_OnDestroyed(object sender, EventArgs e)
+    {
+        GameOverUI.Instance.Show();
     }
 
     // Update is called once per frame

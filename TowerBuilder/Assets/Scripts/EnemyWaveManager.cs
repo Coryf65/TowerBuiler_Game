@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyWaveManager : MonoBehaviour
 {
 
+    public static EnemyWaveManager Instance { get; private set; }
+
     // creating an event to handler the wave changes and update the ui
     public event EventHandler OnWaveNumberChanged;
 
@@ -26,8 +28,13 @@ public class EnemyWaveManager : MonoBehaviour
 
     private float nextWaveSpawnTimer;
     private float enemySpawnTimer;
-    private int enemiesToSpawnCount;
+    [SerializeField] private int enemiesToSpawnCount;
     Vector3 spawnPosition;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +86,7 @@ public class EnemyWaveManager : MonoBehaviour
 
     private void SpawnWave()
     {                
-        enemiesToSpawnCount = 5 + 3 * waveNumber; // building a dynamic spawn counter
+        enemiesToSpawnCount = (5 + 3 * waveNumber); // building a dynamic spawn counter
         currentState = State.SpawningWave;
         waveNumber++;
         OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);

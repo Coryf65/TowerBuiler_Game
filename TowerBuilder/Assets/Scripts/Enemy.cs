@@ -27,8 +27,12 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         rigidbody2D = GetComponent<Rigidbody2D>();
-        // move towards a building at first the HQ and then touch and do damage
-        targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+
+        if (BuildingManager.Instance.GetHQBuilding() != null)
+        {
+            // move towards a building at first the HQ and then touch and do damage
+            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+        }
 
         healthSystem = GetComponent<HealthSystem>();
         healthSystem.OnDestroyed += HealthSystem_OnDestroyed;
@@ -122,8 +126,11 @@ public class Enemy : MonoBehaviour
         // setting default of HQ as the target is all other buildings are destroyed
         if (targetTransform == null)
         {
-            // Noting in Range
-            targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+            // Nothing in Range
+            if (BuildingManager.Instance.GetHQBuilding() != null)
+            {
+                targetTransform = BuildingManager.Instance.GetHQBuilding().transform;
+            }
         }
     }
 }
