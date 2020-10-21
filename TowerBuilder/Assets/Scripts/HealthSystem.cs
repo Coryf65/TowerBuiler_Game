@@ -7,6 +7,7 @@ public class HealthSystem : MonoBehaviour
 {
 
     public event EventHandler OnDamageTaken;
+    public event EventHandler OnRepair;
     public event EventHandler OnDestroyed;
 
     [SerializeField] private int maxHP;
@@ -30,6 +31,21 @@ public class HealthSystem : MonoBehaviour
         }
     }
 
+    public void Repair(int rocoveryAmount)
+    {
+        currentHP += rocoveryAmount;
+        currentHP = Mathf.Clamp(currentHP, 0, maxHP);
+
+        OnRepair?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void FullRepair()
+    {
+        currentHP = maxHP;
+
+        OnRepair?.Invoke(this, EventArgs.Empty);
+    }
+
     public void SetHPMax(int maxHP, bool updateHPAmount)
     {
         this.maxHP = maxHP;
@@ -48,6 +64,11 @@ public class HealthSystem : MonoBehaviour
     public int GetCurrentHP()
     {
         return currentHP;
+    }
+
+    public int GetMaxHP()
+    {
+        return maxHP;
     }
 
     public bool IsFullHP()
