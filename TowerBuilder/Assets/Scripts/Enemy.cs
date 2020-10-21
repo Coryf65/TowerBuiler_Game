@@ -35,6 +35,7 @@ public class Enemy : MonoBehaviour
         }
 
         healthSystem = GetComponent<HealthSystem>();
+        healthSystem.OnDamageTaken += HealthSystem_OnDamageTaken;
         healthSystem.OnDestroyed += HealthSystem_OnDestroyed;
         // adding a slight Randomness so Enemies won't loook
         // For a traget at the very same frame every time
@@ -43,8 +44,14 @@ public class Enemy : MonoBehaviour
         
     }
 
+    private void HealthSystem_OnDamageTaken(object sender, System.EventArgs e)
+    {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+    }
+
     private void HealthSystem_OnDestroyed(object sender, System.EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         Destroy(gameObject);
     }
 

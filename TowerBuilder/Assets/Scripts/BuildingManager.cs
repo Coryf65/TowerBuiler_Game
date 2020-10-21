@@ -45,6 +45,7 @@ public class BuildingManager : MonoBehaviour
 
     private void HQ_OnDestroyed(object sender, EventArgs e)
     {
+        SoundManager.Instance.PlaySound(SoundManager.Sound.GameOver);
         GameOverUI.Instance.Show();
     }
 
@@ -63,6 +64,7 @@ public class BuildingManager : MonoBehaviour
                         // create an instance on mouse position with no rotation
                         //Instantiate(activeBuildingType.prefabTransform, MouseHelper.GetMouseWorldPosition(), Quaternion.identity);
                         BuildingConstructor.Create(MouseHelper.GetMouseWorldPosition(), activeBuildingType);
+                        SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingPlaced);
                     } else
                     {
                         ToolTipUI.Instance.Show("Cannot Afford: " + activeBuildingType.GetConstructionCost(), new ToolTipUI.ToolTipTimer { timer = 2f });
