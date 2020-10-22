@@ -9,6 +9,7 @@ public class HealthSystem : MonoBehaviour
     public event EventHandler OnDamageTaken;
     public event EventHandler OnRepair;
     public event EventHandler OnDestroyed;
+    public event EventHandler OnMaxHPChanged;
 
     [SerializeField] private int maxHP;
     private int currentHP;
@@ -54,6 +55,8 @@ public class HealthSystem : MonoBehaviour
         {
             currentHP = maxHP;
         }
+
+        OnMaxHPChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public float GetHPNormalized()
