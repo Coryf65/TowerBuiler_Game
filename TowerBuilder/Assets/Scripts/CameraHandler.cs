@@ -20,16 +20,21 @@ public class CameraHandler : MonoBehaviour
     private float orthographicSize;
     private float targetOrthographicSize;
     private bool edgeScrolling;
+    private BuildingTypeSO arrow;
+    private BuildingTypeListSO buildingList;
 
     public static CameraHandler Instance { get; private set; }
 
     private void Awake()
     {
-        Instance = this;
+        Instance = this;               
     }
 
     private void Start()
     {
+        buildingList = Resources.Load<BuildingTypeListSO>(typeof(BuildingTypeListSO).Name); 
+        arrow = buildingList.list[0];
+
         orthographicSize = cinemachineCamera.m_Lens.OrthographicSize;
         targetOrthographicSize = orthographicSize;
     }
@@ -61,6 +66,11 @@ public class CameraHandler : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             OptionsUI.Instance.ToggleVisible();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Mouse1))
+        {
+            BuildingManager.Instance.SetActiveBuildingType(buildingType: arrow);
         }
         
         if (edgeScrolling)
