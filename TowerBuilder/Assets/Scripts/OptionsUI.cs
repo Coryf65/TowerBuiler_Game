@@ -38,7 +38,7 @@ public class OptionsUI : MonoBehaviour
 
         // Main Menu Button
         transform.Find("mainMenuBtn").GetComponent<Button>().onClick.AddListener(() => {
-
+            GameSceneManager.Load(GameSceneManager.Scene.MainMenuScene);
         });
     }
 

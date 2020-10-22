@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public static class GameSceneManager
@@ -15,6 +13,8 @@ public static class GameSceneManager
 
     public static void Load(Scene scene)
     {
+        // Reset the time
+        Time.timeScale = 1f;
         // load a scene
         SceneManager.LoadScene(scene.ToString());
     }
