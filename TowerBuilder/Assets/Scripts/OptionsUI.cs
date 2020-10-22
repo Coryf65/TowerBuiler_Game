@@ -11,8 +11,12 @@ public class OptionsUI : MonoBehaviour
     private TextMeshProUGUI soundVolumeText;
     private TextMeshProUGUI musicVolumeText;
 
+    public static OptionsUI Instance { get; private set; }
+
     public void Awake()
     {
+        Instance = this;
+
         soundVolumeText = transform.Find("soundText").Find("currentVolumeText").GetComponent<TextMeshProUGUI>();
         musicVolumeText = transform.Find("musicText").Find("currentMusic").GetComponent<TextMeshProUGUI>();
 

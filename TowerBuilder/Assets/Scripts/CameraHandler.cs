@@ -58,6 +58,11 @@ public class CameraHandler : MonoBehaviour
         float x = Input.GetAxisRaw("Horizontal");
         float y = Input.GetAxisRaw("Vertical");
 
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            OptionsUI.Instance.ToggleVisible();
+        }
+        
         if (edgeScrolling)
         {
             // make edge map scrolling           
