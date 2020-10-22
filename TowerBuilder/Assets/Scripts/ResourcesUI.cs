@@ -10,7 +10,7 @@ public class ResourcesUI : MonoBehaviour
     //[SerializeField] private Transform resourceTemplate;
     private ResourceTypeListSO resourceList;
     private Dictionary<ResourceTypeSO, Transform> resourceTypeTransformDictionary;
-    private float offestAmount = -80f;
+    private float offestAmount = -100f;
 
     private void Awake()
     {
@@ -36,7 +36,7 @@ public class ResourcesUI : MonoBehaviour
             resourceTypeTransformDictionary[resourceType] = resourceTransform;
             
             // need to position it now
-            offestAmount -= 130f;
+            offestAmount -= 150f;
             //index++;
         }
     }
