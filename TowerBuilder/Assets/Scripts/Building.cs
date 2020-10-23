@@ -42,6 +42,7 @@ public class Building : MonoBehaviour
     {
         ShowBuildingRepairBtn();
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
+        ScreenShake.Instance.ShakeCamera();
     }
 
     private void Update()
@@ -57,6 +58,7 @@ public class Building : MonoBehaviour
         Instantiate(Resources.Load<Transform>("pfBuildingDestroyedParticles"), transform.position, Quaternion.identity);
         Destroy(gameObject);
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
+        ScreenShake.Instance.ShakeCamera(6f, .12f);
     }
 
     /// <summary>

@@ -58,6 +58,7 @@ public class EnemyWaveManager : MonoBehaviour
                 }
                 break;
             case State.SpawningWave:
+                
                 // check how many enemies we have left to spawn
                 if (enemiesToSpawnCount > 0)
                 {
@@ -67,6 +68,7 @@ public class EnemyWaveManager : MonoBehaviour
                         // Reset the timer
                         enemySpawnTimer = UnityEngine.Random.Range(0f, .2f);
                         // Spawn an enemy
+                        Debug.Log("Spawning");
                         Enemy.Create(spawnPosition + UtilsClass.GetRandomDirection() * UnityEngine.Random.Range(0f, 10f));
                     }
                     // we spawned one change counter
@@ -77,7 +79,7 @@ public class EnemyWaveManager : MonoBehaviour
                         currentState = State.WaitingToSpawnNextWave;
                         spawnPosition = spawnPositionTransforms[UnityEngine.Random.Range(0, spawnPositionTransforms.Count)].position; // randomy choose a spawn point from our list
                         nextSpawnPositionTransform.position = spawnPosition;
-                        nextWaveSpawnTimer = 15f; // 10 seconds
+                        nextWaveSpawnTimer = 10f; // 10 seconds
                     }
                 }
                 break;
@@ -85,8 +87,8 @@ public class EnemyWaveManager : MonoBehaviour
     }
 
     private void SpawnWave()
-    {                
-        enemiesToSpawnCount = (3 + 2 * waveNumber); // building a dynamic spawn counter
+    {
+        enemiesToSpawnCount = 3 + 2 * waveNumber;
         currentState = State.SpawningWave;
         waveNumber++;
         OnWaveNumberChanged?.Invoke(this, EventArgs.Empty);

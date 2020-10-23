@@ -47,11 +47,13 @@ public class Enemy : MonoBehaviour
     private void HealthSystem_OnDamageTaken(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyHit);
+        ScreenShake.Instance.ShakeCamera();
     }
 
     private void HealthSystem_OnDestroyed(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        ScreenShake.Instance.ShakeCamera(7f, .15f);
         Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity); // destroyed particles
         Destroy(gameObject);
     }
