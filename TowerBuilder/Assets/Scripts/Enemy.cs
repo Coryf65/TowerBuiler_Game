@@ -52,6 +52,7 @@ public class Enemy : MonoBehaviour
     private void HealthSystem_OnDestroyed(object sender, System.EventArgs e)
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
+        Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity); // destroyed particles
         Destroy(gameObject);
     }
 
@@ -98,7 +99,7 @@ public class Enemy : MonoBehaviour
             // deal damage to the touched building
             healthSystem.TakeDamage(10);
             // now our enemy is destroyed
-            Destroy(gameObject);
+            this.healthSystem.TakeDamage(9999);
         }
     }
 
