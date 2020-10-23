@@ -26,5 +26,5 @@ MonoBehaviour:
   hasResourceGenData: 1
   ConstructionResourceCost:
   - resourceType: {fileID: 11400000, guid: defe256b23bde0f4aa9d5a6c857e79b3, type: 2}
-    amount: 30
+    amount: 40
   constructionTimerMax: 15
