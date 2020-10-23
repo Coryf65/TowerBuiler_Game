@@ -27,23 +27,12 @@ public class GameOverUI : MonoBehaviour
         Hide();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void Show()
     {
         gameObject.SetActive(true);
 
         transform.Find("waveText").GetComponent<TextMeshProUGUI>().SetText($"You Survived {EnemyWaveManager.Instance.GetWaveNumber()} Waves!");
+        Time.timeScale = .1f;
     }
 
     private void Hide()
