@@ -27,7 +27,10 @@ public class CameraHandler : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;               
+        Instance = this;
+
+        // going to get data using playerPrefs
+        edgeScrolling = PlayerPrefs.GetInt("edgeScrolling", 1) == 1;
     }
 
     private void Start()
@@ -103,6 +106,7 @@ public class CameraHandler : MonoBehaviour
     public void SetEdgeScrolling(bool edgeScrolling)
     {
         this.edgeScrolling = edgeScrolling;
+        PlayerPrefs.SetInt("edgeScrolling", edgeScrolling ? 1 : 0);
     }
 
     public bool GetEdgeScrolling()

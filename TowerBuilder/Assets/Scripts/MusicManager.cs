@@ -10,6 +10,7 @@ public class MusicManager : MonoBehaviour
     public void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        PlayerPrefs.GetFloat("musicVolume", .5f); // get players music levels
         audioSource.volume = volume;
     }
 
@@ -18,6 +19,7 @@ public class MusicManager : MonoBehaviour
         volume += .1f; // 10%
         volume = Mathf.Clamp01(volume); // clamps between 0 and 1
         audioSource.volume = volume;
+        PlayerPrefs.SetFloat("musicVolume", .5f); // saving players music levels
     }
 
     public void DecreaseVolume()
@@ -25,6 +27,7 @@ public class MusicManager : MonoBehaviour
         volume -= .1f; // 10%
         volume = Mathf.Clamp01(volume); // clamps between 0 and 1
         audioSource.volume = volume;
+        PlayerPrefs.SetFloat("musicVolume", .5f); // saving players music levels
     }
 
     public float GetCurrentVolume()
