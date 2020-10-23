@@ -105,6 +105,19 @@ public class BuildingManager : MonoBehaviour
             return false;
         }
 
+        if (buildingType.hasResourceGenData)
+        {
+            // Make sure there is at least one node nearby
+            int nearbyResourceAmount = ResourceGenerator.GetNearbyResourceAmount(buildingType.resourceGenData, position);
+
+            if (nearbyResourceAmount == 0)
+            {
+                errorReason = "No nearby resource nodes!";
+                return false;
+            }
+        }
+
+        
         // displaying an overlaying circle
         collider2Ds = Physics2D.OverlapCircleAll(position, buildingType.minConstructuonRadius);
 
