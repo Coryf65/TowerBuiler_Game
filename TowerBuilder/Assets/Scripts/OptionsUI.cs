@@ -36,7 +36,7 @@ public class OptionsUI : MonoBehaviour
             UpdateText();
         });
         transform.Find("musicText").Find("musicMinusBtn").GetComponent<Button>().onClick.AddListener(() => {
-            musicManager.IncreaseVolume();
+            musicManager.DecreaseVolume();
             UpdateText();
         });
 
@@ -62,8 +62,8 @@ public class OptionsUI : MonoBehaviour
     // updating the text for volumes
     private void UpdateText()
     {
-        soundVolumeText.SetText(Mathf.RoundToInt(soundManager.GetCurrentVolume() * 10).ToString()); // * 10 to make it easier to read
-        musicVolumeText.SetText(Mathf.RoundToInt(musicManager.GetCurrentVolume() * 10).ToString()); // * 10 to make it easier to read
+        soundVolumeText.SetText(Mathf.RoundToInt(soundManager.GetCurrentVolume() * 100).ToString()); // * 10 to make it easier to read
+        musicVolumeText.SetText(Mathf.RoundToInt(musicManager.GetCurrentVolume() * 100).ToString()); // * 10 to make it easier to read
     }
 
     public void ToggleVisible()

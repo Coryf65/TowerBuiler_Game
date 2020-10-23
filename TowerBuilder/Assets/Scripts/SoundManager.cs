@@ -49,14 +49,14 @@ public class SoundManager : MonoBehaviour
     {
         volume += .1f; // 10%
         volume = Mathf.Clamp01(volume); // clamps between 0 and 1
-        PlayerPrefs.SetFloat("soundVolume", .5f); // saving players music levels
+        PlayerPrefs.SetFloat("soundVolume", volume); // saving players music levels
     }
 
     public void DecreaseVolume()
     {
         volume -= .1f; // 10%
         volume = Mathf.Clamp01(volume); // clamps between 0 and 1
-        PlayerPrefs.SetFloat("soundVolume", .5f); // saving players music levels
+        PlayerPrefs.SetFloat("soundVolume", volume); // saving players music levels
     }
 
     public float GetCurrentVolume()
