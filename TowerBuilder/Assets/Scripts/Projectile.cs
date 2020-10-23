@@ -16,10 +16,8 @@ public class Projectile : MonoBehaviour
     /// <returns>Projectile arrow</returns>
     public static Projectile Create(Vector3 position, Enemy enemy)
     {
-        // Getting our Prefab
-        Transform pfArrow = Resources.Load<Transform>("pf_ArrowProjectile");
         // Create an instantiate
-        Transform arrowTransform = Instantiate(pfArrow, position, Quaternion.identity);
+        Transform arrowTransform = Instantiate(GameAssets.Instance.pf_arrowProjectile, position, Quaternion.identity);
         // returning this referece to this object
         Projectile arrow = arrowTransform.GetComponent<Projectile>();
         arrow.FindTarget(enemy);

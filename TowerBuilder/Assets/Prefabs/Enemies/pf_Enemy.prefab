@@ -151,7 +151,7 @@ GameObject:
   - component: {fileID: 6760087433543880013}
   - component: {fileID: 8671057594055856045}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: pf_Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -399,7 +399,7 @@ PrefabInstance:
     - target: {fileID: 3558319436372859911, guid: 185d2300be4bd4848a8c56d79ed60697,
         type: 3}
       propertyPath: m_Name
-      value: EnemyVisual
+      value: pf_EnemyVisual
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 185d2300be4bd4848a8c56d79ed60697, type: 3}

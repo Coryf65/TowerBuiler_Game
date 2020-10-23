@@ -7,9 +7,12 @@ public class Enemy : MonoBehaviour
     public static Enemy Create(Vector3 position)
     {
         // Getting our Prefab
-        Transform enemyPrefab = Resources.Load<Transform>("Enemy");
+        //Transform enemyPrefab = Resources.Load<Transform>("Enemy");
         // Create an instantiate
-        Transform enemyTransform = Instantiate(enemyPrefab, position, Quaternion.identity);
+
+        // Instead of grabbing the prefab by string sname 
+        // We use our GameAssets class to reference it!
+        Transform enemyTransform = Instantiate(GameAssets.Instance.pf_Enemy, position, Quaternion.identity);
         // returning this referece to this object
         Enemy enemy = enemyTransform.GetComponent<Enemy>();
         return enemy;
@@ -54,7 +57,7 @@ public class Enemy : MonoBehaviour
     {
         SoundManager.Instance.PlaySound(SoundManager.Sound.EnemyDie);
         ScreenShake.Instance.ShakeCamera(7f, .15f);
-        Instantiate(Resources.Load<Transform>("pfEnemyDieParticles"), transform.position, Quaternion.identity); // destroyed particles
+        Instantiate(GameAssets.Instance.pf_EnemyDeathParticles, transform.position, Quaternion.identity); // destroyed particles
         Destroy(gameObject);
     }
 
