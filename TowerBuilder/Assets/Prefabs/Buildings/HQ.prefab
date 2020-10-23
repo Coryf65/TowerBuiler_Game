@@ -132,7 +132,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   findTargetTimerMax: 0.2
   targetRadius: 25
-  fireRateMax: 0.1
+  fireRateMax: 0.2
 --- !u!1 &6542730878401446335
 GameObject:
   m_ObjectHideFlags: 0

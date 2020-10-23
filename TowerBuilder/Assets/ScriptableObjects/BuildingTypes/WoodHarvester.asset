@@ -21,10 +21,10 @@ MonoBehaviour:
     maxResourceAmount: 7
   nameString: Wood Harvester
   sprite: {fileID: 21300000, guid: 793ca27a5a3378149aaa12abe85933f4, type: 3}
-  minConstructuonRadius: 7
+  minConstructuonRadius: 8
   maxHP: 100
   hasResourceGenData: 1
   ConstructionResourceCost:
   - resourceType: {fileID: 11400000, guid: defe256b23bde0f4aa9d5a6c857e79b3, type: 2}
     amount: 10
-  constructionTimerMax: 5
+  constructionTimerMax: 7
