@@ -43,6 +43,7 @@ public class Building : MonoBehaviour
         ShowBuildingRepairBtn();
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDamaged);
         ScreenShake.Instance.ShakeCamera();
+        ChromaticAbberationEffect.Instance.SetWeight(1f);
     }
 
     private void Update()
@@ -59,6 +60,7 @@ public class Building : MonoBehaviour
         Destroy(gameObject);
         SoundManager.Instance.PlaySound(SoundManager.Sound.BuildingDestroyed);
         ScreenShake.Instance.ShakeCamera(6f, .12f);
+        ChromaticAbberationEffect.Instance.SetWeight(1f);
     }
 
     /// <summary>
